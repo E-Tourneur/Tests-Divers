@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.lblIP = new System.Windows.Forms.Label();
-            this.iptbIP = new CommandSequencer.Views.CustomsComponents.IPTextBox();
             this.lblPort = new System.Windows.Forms.Label();
             this.txtPort = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
@@ -39,8 +38,14 @@
             this.pnlControl = new System.Windows.Forms.Panel();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnExecute = new System.Windows.Forms.Button();
+            this.gpScript = new System.Windows.Forms.GroupBox();
+            this.gbResponse = new System.Windows.Forms.GroupBox();
+            this.rtbResponse = new System.Windows.Forms.RichTextBox();
+            this.iptbIP = new CommandSequencer.Views.CustomsComponents.IPTextBox();
             this.tlpMain.SuspendLayout();
             this.pnlControl.SuspendLayout();
+            this.gpScript.SuspendLayout();
+            this.gbResponse.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlpMain
@@ -57,8 +62,9 @@
             this.tlpMain.Controls.Add(this.lblPort, 2, 0);
             this.tlpMain.Controls.Add(this.txtPort, 3, 0);
             this.tlpMain.Controls.Add(this.btnConnect, 4, 0);
-            this.tlpMain.Controls.Add(this.rtbScript, 0, 1);
             this.tlpMain.Controls.Add(this.pnlControl, 5, 3);
+            this.tlpMain.Controls.Add(this.gpScript, 0, 1);
+            this.tlpMain.Controls.Add(this.gbResponse, 0, 2);
             this.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpMain.Location = new System.Drawing.Point(0, 0);
             this.tlpMain.Name = "tlpMain";
@@ -67,6 +73,9 @@
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpMain.Size = new System.Drawing.Size(653, 429);
             this.tlpMain.TabIndex = 0;
             // 
@@ -80,15 +89,6 @@
             this.lblIP.TabIndex = 0;
             this.lblIP.Text = "IP:";
             this.lblIP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // iptbIP
-            // 
-            this.iptbIP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.iptbIP.Location = new System.Drawing.Point(29, 3);
-            this.iptbIP.Name = "iptbIP";
-            this.iptbIP.Size = new System.Drawing.Size(130, 23);
-            this.iptbIP.TabIndex = 1;
-            this.iptbIP.ToolTipText = "";
             // 
             // lblPort
             // 
@@ -120,15 +120,14 @@
             this.btnConnect.TabIndex = 4;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // rtbScript
             // 
-            this.tlpMain.SetColumnSpan(this.rtbScript, 6);
             this.rtbScript.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbScript.Location = new System.Drawing.Point(3, 32);
+            this.rtbScript.Location = new System.Drawing.Point(3, 16);
             this.rtbScript.Name = "rtbScript";
-            this.tlpMain.SetRowSpan(this.rtbScript, 2);
-            this.rtbScript.Size = new System.Drawing.Size(647, 344);
+            this.rtbScript.Size = new System.Drawing.Size(641, 150);
             this.rtbScript.TabIndex = 5;
             this.rtbScript.Text = "";
             // 
@@ -162,6 +161,49 @@
             this.btnExecute.Text = "Execute";
             this.btnExecute.UseVisualStyleBackColor = true;
             // 
+            // gpScript
+            // 
+            this.tlpMain.SetColumnSpan(this.gpScript, 6);
+            this.gpScript.Controls.Add(this.rtbScript);
+            this.gpScript.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gpScript.Location = new System.Drawing.Point(3, 32);
+            this.gpScript.Name = "gpScript";
+            this.gpScript.Size = new System.Drawing.Size(647, 169);
+            this.gpScript.TabIndex = 7;
+            this.gpScript.TabStop = false;
+            this.gpScript.Text = "Script";
+            // 
+            // gbResponse
+            // 
+            this.tlpMain.SetColumnSpan(this.gbResponse, 6);
+            this.gbResponse.Controls.Add(this.rtbResponse);
+            this.gbResponse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbResponse.Location = new System.Drawing.Point(3, 207);
+            this.gbResponse.Name = "gbResponse";
+            this.gbResponse.Size = new System.Drawing.Size(647, 169);
+            this.gbResponse.TabIndex = 8;
+            this.gbResponse.TabStop = false;
+            this.gbResponse.Text = "Response";
+            // 
+            // rtbResponse
+            // 
+            this.rtbResponse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbResponse.Location = new System.Drawing.Point(3, 16);
+            this.rtbResponse.Name = "rtbResponse";
+            this.rtbResponse.ReadOnly = true;
+            this.rtbResponse.Size = new System.Drawing.Size(641, 150);
+            this.rtbResponse.TabIndex = 0;
+            this.rtbResponse.Text = "";
+            // 
+            // iptbIP
+            // 
+            this.iptbIP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.iptbIP.Location = new System.Drawing.Point(29, 3);
+            this.iptbIP.Name = "iptbIP";
+            this.iptbIP.Size = new System.Drawing.Size(130, 23);
+            this.iptbIP.TabIndex = 1;
+            this.iptbIP.ToolTipText = "";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -174,6 +216,8 @@
             this.tlpMain.ResumeLayout(false);
             this.tlpMain.PerformLayout();
             this.pnlControl.ResumeLayout(false);
+            this.gpScript.ResumeLayout(false);
+            this.gbResponse.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -190,6 +234,9 @@
         private System.Windows.Forms.Panel pnlControl;
         private System.Windows.Forms.Button btnExecute;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.GroupBox gpScript;
+        private System.Windows.Forms.GroupBox gbResponse;
+        private System.Windows.Forms.RichTextBox rtbResponse;
     }
 }
 
