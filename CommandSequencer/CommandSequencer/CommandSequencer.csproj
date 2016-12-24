@@ -53,6 +53,11 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CustomsEvents\ConnectionChanged.cs" />
+    <Compile Include="Helpers\CustomsEvents\ConsoleWriterEventArgs.cs" />
+    <Compile Include="Helpers\Enums\ConnectionStateEnum.cs" />
+    <Compile Include="Helpers\Misc\Logger.cs" />
+    <Compile Include="Helpers\Misc\RedirectTextWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\CustomsComponents\IPTextBox.cs">
@@ -91,7 +96,6 @@
     <None Include="Resources\Icons8-Windows-8-User-Interface-Command-Line.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Helpers\" />
     <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

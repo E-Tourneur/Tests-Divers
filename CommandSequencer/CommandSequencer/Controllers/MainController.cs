@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CommandSequencer.Helpers.CustomsEvents;
+using CommandSequencer.Helpers.Misc;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +11,13 @@ using System.Threading.Tasks;
 
 namespace CommandSequencer.Controllers
 {
+    /// <summary>
+    /// FR: Controleur principal. C'est via cette classe que notre FrmMain va interagir, tout le code intelligent se situe donc
+    /// dans celle-ci.
+    /// 
+    /// EN: Main Controller. It is by this class that our FrmMain will interact, all the intelligent code is thus located
+    /// in this one.
+    /// </summary>
     public class MainController
     {
 
@@ -30,11 +39,13 @@ namespace CommandSequencer.Controllers
         private TcpClient _client;
         private StreamReader _reader;
         private StreamWriter _writer;
+        private ConnectionStateEnum _connectionState;
+
         #endregion
 
         #region Events & Delegates
 
-
+        public event ConnectionChangedEventHandler ConnectionChanged;
 
         #endregion
 
@@ -58,6 +69,19 @@ namespace CommandSequencer.Controllers
             set { _ipAdress = value; }
         }
 
+        public ConnectionStateEnum ConnectionState
+        {
+            get { return _connectionState; }
+            set
+            {
+                if(ConnectionChanged != null)
+                {
+                    ConnectionChanged(this, new ConnectionChangedEventArgs(value));
+                }
+                _connectionState = value;
+            }
+        }
+
         #endregion
 
         #region Constructors
@@ -67,33 +91,40 @@ namespace CommandSequencer.Controllers
         #endregion
 
         #region Methods
+        /// <summary>
+        /// FR: Methode de connexion, on va instancier tout ce dont nous avons besoin et le configurer. 
+        /// On envoi un pong à des fins de test.
+        /// 
+        /// </summary>
         public void Connect()
         {
+            Logger.WriteLog("Connecting...");
+            ConnectionState = ConnectionStateEnum.Connecting;
             _client = new TcpClient(IPAdress, Port);
             _reader = new StreamReader(_client.GetStream());
             _writer = new StreamWriter(_client.GetStream());
             _writer.AutoFlush = true;
-            _writer.WriteLine("Ping");
-            //Thread.Sleep(20);
+            Logger.WriteLog("Send pong");
+            _writer.WriteLine("Pong");
             Console.WriteLine(_reader.ReadLine());
-            _writer.WriteLine("PingPing");
-            //Thread.Sleep(20);
-            Console.WriteLine(_reader.ReadLine());
-            _writer.WriteLine("PingPingPong");
-            //Thread.Sleep(20);
-            Console.WriteLine(_reader.ReadLine());
-            _writer.WriteLine("Stop");
-            Console.WriteLine(_reader.ReadLine());
-
+            ConnectionState = ConnectionStateEnum.Connected;
+            Logger.WriteLog("Connected");
         }
 
+        /// <summary>
+        /// FR: Méthode  de déconnexion, on va fermer tout ce dont nous avons plus besoin.
+        /// </summary>
         public void Disconnect()
         {
             if (_client.Connected)
             {
-                _writer.Dispose();
-                _reader.Dispose();
-                _client.Close(); 
+                Logger.WriteLog("Disconnecting...");
+                ConnectionState = ConnectionStateEnum.Disconnecting;
+                _writer.Close();
+                _reader.Close();
+                _client.Close();
+                ConnectionState = ConnectionStateEnum.Disconnected;
+                Logger.WriteLog("Disconnected");
             }
         }
         #endregion

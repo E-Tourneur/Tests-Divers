@@ -31,17 +31,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.lblIP = new System.Windows.Forms.Label();
+            this.iptbIP = new CommandSequencer.Views.CustomsComponents.IPTextBox();
             this.lblPort = new System.Windows.Forms.Label();
             this.txtPort = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
-            this.rtbScript = new System.Windows.Forms.RichTextBox();
             this.pnlControl = new System.Windows.Forms.Panel();
-            this.btnClear = new System.Windows.Forms.Button();
             this.btnExecute = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.gpScript = new System.Windows.Forms.GroupBox();
+            this.rtbScript = new System.Windows.Forms.RichTextBox();
             this.gbResponse = new System.Windows.Forms.GroupBox();
             this.rtbResponse = new System.Windows.Forms.RichTextBox();
-            this.iptbIP = new CommandSequencer.Views.CustomsComponents.IPTextBox();
             this.tlpMain.SuspendLayout();
             this.pnlControl.SuspendLayout();
             this.gpScript.SuspendLayout();
@@ -90,6 +90,15 @@
             this.lblIP.Text = "IP:";
             this.lblIP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // iptbIP
+            // 
+            this.iptbIP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.iptbIP.Location = new System.Drawing.Point(29, 3);
+            this.iptbIP.Name = "iptbIP";
+            this.iptbIP.Size = new System.Drawing.Size(130, 23);
+            this.iptbIP.TabIndex = 1;
+            this.iptbIP.ToolTipText = "";
+            // 
             // lblPort
             // 
             this.lblPort.AutoSize = true;
@@ -122,15 +131,6 @@
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
-            // rtbScript
-            // 
-            this.rtbScript.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbScript.Location = new System.Drawing.Point(3, 16);
-            this.rtbScript.Name = "rtbScript";
-            this.rtbScript.Size = new System.Drawing.Size(641, 150);
-            this.rtbScript.TabIndex = 5;
-            this.rtbScript.Text = "";
-            // 
             // pnlControl
             // 
             this.pnlControl.Controls.Add(this.btnExecute);
@@ -141,16 +141,6 @@
             this.pnlControl.Size = new System.Drawing.Size(266, 44);
             this.pnlControl.TabIndex = 6;
             // 
-            // btnClear
-            // 
-            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClear.Location = new System.Drawing.Point(188, 18);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 0;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            // 
             // btnExecute
             // 
             this.btnExecute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -160,6 +150,16 @@
             this.btnExecute.TabIndex = 1;
             this.btnExecute.Text = "Execute";
             this.btnExecute.UseVisualStyleBackColor = true;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.Location = new System.Drawing.Point(188, 18);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 0;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
             // 
             // gpScript
             // 
@@ -172,6 +172,15 @@
             this.gpScript.TabIndex = 7;
             this.gpScript.TabStop = false;
             this.gpScript.Text = "Script";
+            // 
+            // rtbScript
+            // 
+            this.rtbScript.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbScript.Location = new System.Drawing.Point(3, 16);
+            this.rtbScript.Name = "rtbScript";
+            this.rtbScript.Size = new System.Drawing.Size(641, 150);
+            this.rtbScript.TabIndex = 5;
+            this.rtbScript.Text = "";
             // 
             // gbResponse
             // 
@@ -194,15 +203,6 @@
             this.rtbResponse.Size = new System.Drawing.Size(641, 150);
             this.rtbResponse.TabIndex = 0;
             this.rtbResponse.Text = "";
-            // 
-            // iptbIP
-            // 
-            this.iptbIP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.iptbIP.Location = new System.Drawing.Point(29, 3);
-            this.iptbIP.Name = "iptbIP";
-            this.iptbIP.Size = new System.Drawing.Size(130, 23);
-            this.iptbIP.TabIndex = 1;
-            this.iptbIP.ToolTipText = "";
             // 
             // FrmMain
             // 
